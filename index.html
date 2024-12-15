@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Investment Risk Quiz</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+    }
+
+    .quiz-container {
+      width: 50%;
+      margin: 0 auto;
+      background-color: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      margin-top: 50px;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 3em;
+    }
+
+    p {
+        font-size: 1.3em;
+    }
+
+    .question {
+      margin: 20px 0;
+      font-size: 1.2em;
+    }
+
+    .question label {
+      display: block;
+      margin: 10px 0;
+    }
+
+    .question label:hover {
+        background-color: rgb(238, 238, 238);
+    }
+    
+
+    button {
+      padding: 10px 20px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      display: block;
+      width: 100%;
+      font-size: 1.2em;
+      margin: 20px 0;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+    #resultsContainer {
+      text-align: justify;
+      font-size: 0.75em;
+    }
+
+    #nextButton {
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="quiz-container">
+    <div class="intro-container">
+      <h1>Stock Market Personality Quiz</h1>
+      <p>Welcome to the Stock Market Personality Quiz - Ethiopian Edition. This program will help you understand your investment style by evaluating your responses. Based on research and psychoanalysis, we assess your risk tolerance and investment preferences</p>
+      <p>There are 15 questions, and your answers will help determine your risk tolerance.</p>
+      <label for="userName">Enter your name to begin:</label>
+      <input type="text" id="userName" placeholder="Your Name">
+      <button id="startButton" onclick="startQuiz()">Start Quiz</button>
+    </div>
+
+    <div id="quizContainer" style="display: none;">
+      <div id="question1" class="question">
+        <p>1. What’s most important to you when you invest?</p>
+        <label><input type="radio" name="q1" value="4"> Long-term growth</label><br>
+        <label><input type="radio" name="q1" value="3"> Steady income</label><br>
+        <label><input type="radio" name="q1" value="1"> A mix of everything</label><br>
+        <label><input type="radio" name="q1" value="2"> Quick profits</label><br>
+      </div>
+
+      <div id="question2" class="question" style="display: none;">
+        <p>2. How much risk are you okay with when you invest?</p>
+        <label><input type="radio" name="q2" value="4"> A lot – I’m okay with ups and downs</label><br>
+        <label><input type="radio" name="q2" value="3"> Some – I like some risk, but not too much</label><br>
+        <label><input type="radio" name="q2" value="2"> Little – I want to play it safe</label><br>
+        <label><input type="radio" name="q2" value="1"> Not sure – I need to learn more</label><br>
+    </div>    
+
+    <div id="question3" class="question" style="display: none;">
+        <p>3. How do you feel about market changes and price swings?</p>
+        <label><input type="radio" name="q3" value="4"> I enjoy the excitement</label><br>
+        <label><input type="radio" name="q3" value="3"> It’s okay, but I like to be careful</label><br>
+        <label><input type="radio" name="q3" value="2"> I don’t like it – I prefer things to be stable</label><br>
+        <label><input type="radio" name="q3" value="1"> I don’t really understand it</label><br>
+    </div>
+    
+    <div id="question4" class="question" style="display: none;">
+        <p>4. How long do you want to wait for your investment to grow?</p>
+        <label><input type="radio" name="q4" value="4"> 10+ years</label><br>
+        <label><input type="radio" name="q4" value="3"> 5-10 years</label><br>
+        <label><input type="radio" name="q4" value="2"> 1-5 years</label><br>
+        <label><input type="radio" name="q4" value="1"> A short time for quick gains</label><br>
+    </div>
+    
+    <div id="question5" class="question" style="display: none;">
+        <p>5. If you suddenly got 500,000 Birr, what would you do with it?</p>
+        <label><input type="radio" name="q5" value="3"> Invest in stocks, bonds, and real estate</label><br>
+        <label><input type="radio" name="q5" value="4"> Put it all in a high-growth stock</label><br>
+        <label><input type="radio" name="q5" value="2"> Buy land or property</label><br>
+        <label><input type="radio" name="q5" value="1"> Keep it in a bank or business</label><br>
+    </div>
+    
+    <div id="question6" class="question" style="display: none;">
+        <p>6. You hear the government is promoting tech startups. What do you do?</p>
+        <label><input type="radio" name="q6" value="4"> I’d invest in tech companies</label><br>
+        <label><input type="radio" name="q6" value="3"> I’d watch and learn more before investing</label><br>
+        <label><input type="radio" name="q6" value="2"> I’d wait until things are more stable</label><br>
+        <label><input type="radio" name="q6" value="1"> I’d stick to traditional investments like land</label><br>
+    </div>
+    
+    <div id="question7" class="question" style="display: none;">
+        <p>7. A local coffee group is doing well and expanding. Would you invest?</p>
+        <label><input type="radio" name="q7" value="4"> Yes, coffee is a strong industry in Ethiopia</label><br>
+        <label><input type="radio" name="q7" value="3"> I’d consider it after looking into their financials</label><br>
+        <label><input type="radio" name="q7" value="2"> I’d stick to safer investments</label><br>
+        <label><input type="radio" name="q7" value="1"> No, I don’t trust cooperatives</label><br>
+    </div>
+    
+    <div id="question8" class="question" style="display: none;">
+        <p>8. A new electric tuk-tuk business is starting in Addis. What do you think?</p>
+        <label><input type="radio" name="q8" value="4"> I’d invest, I think electric vehicles are the future</label><br>
+        <label><input type="radio" name="q8" value="3"> I’d look into it more before deciding</label><br>
+        <label><input type="radio" name="q8" value="2"> I’d wait to see if the business does well</label><br>
+        <label><input type="radio" name="q8" value="1"> I prefer traditional industries like farming</label><br>
+    </div>
+    
+    <div id="question9" class="question" style="display: none;">
+        <p>9. A relative wants you to invest in a family business that’s struggling. What do you do?</p>
+        <label><input type="radio" name="q9" value="3"> I’d invest, with the right plan it could succeed</label><br>
+        <label><input type="radio" name="q9" value="2"> I’d be careful and want to see a good recovery plan</label><br>
+        <label><input type="radio" name="q9" value="4"> I’d avoid it and look for new businesses</label><br>
+        <label><input type="radio" name="q9" value="1"> I wouldn’t invest in a family business</label><br>
+    </div>
+    
+    <div id="question10" class="question" style="display: none;">
+        <p>10. An international company just launched on the Ethiopian Stock Exchange, but their stock price is unstable. What do you do?</p>
+        <label><input type="radio" name="q10" value="4"> I’d invest now, it’s a good chance to buy early</label><br>
+        <label><input type="radio" name="q10" value="3"> I’d wait and see how it does first</label><br>
+        <label><input type="radio" name="q10" value="2"> I’d wait for it to settle down before investing</label><br>
+        <label><input type="radio" name="q10" value="1"> I prefer not to invest in unstable stocks</label><br>
+    </div> 
+    
+    <div id="question11" class="question" style="display: none;">
+        <p>11. A local supermarket chain is planning to expand and might list its stock soon. What would you do?</p>
+        <label><input type="radio" name="q11" value="4"> I’d invest as soon as the stock is available</label><br>
+        <label><input type="radio" name="q11" value="3"> I’d research their business before deciding</label><br>
+        <label><input type="radio" name="q11" value="2"> I’d wait to see how the expansion goes</label><br>
+        <label><input type="radio" name="q11" value="1"> I’d stay away from supermarkets and look elsewhere</label><br>
+    </div>
+    
+    <div id="question12" class="question" style="display: none;">
+        <p>12. You’ve saved up some money and are ready to invest. What would you do?</p>
+        <label><input type="radio" name="q12" value="4"> I’d invest in stocks</label><br>
+        <label><input type="radio" name="q12" value="3"> I’d mix stocks and real estate for balance</label><br>
+        <label><input type="radio" name="q12" value="2"> I’d keep my money in a safe place like a savings account</label><br>
+        <label><input type="radio" name="q12" value="1"> I’d look at international markets</label><br>
+    </div>
+    
+    <div id="question13" class="question" style="display: none;">
+        <p>13. The Ethiopian government is supporting renewable energy businesses. Would you invest?</p>
+        <label><input type="radio" name="q13" value="4"> Yes, I think renewable energy is the future</label><br>
+        <label><input type="radio" name="q13" value="3"> I’d think about it, but need more information</label><br>
+        <label><input type="radio" name="q13" value="2"> I prefer traditional energy like oil and gas</label><br>
+        <label><input type="radio" name="q13" value="1"> I wouldn’t invest in energy at all</label><br>
+    </div>
+    
+    <div id="question14" class="question" style="display: none;">
+        <p>14. You’re learning about cryptocurrency in a seminar. How do you feel about it?</p>
+        <label><input type="radio" name="q14" value="4"> I’d definitely invest, it’s the future</label><br>
+        <label><input type="radio" name="q14" value="3"> I’d learn more before deciding</label><br>
+        <label><input type="radio" name="q14" value="2"> I’m not sure, I like traditional investments</label><br>
+        <label><input type="radio" name="q14" value="1"> I wouldn’t invest in cryptocurrency</label><br>
+    </div>
+    
+    <div id="question15" class="question" style="display: none;">
+        <p>15. You get a chance to invest in a tech company modernizing farming. What do you do?</p>
+        <label><input type="radio" name="q15" value="4"> I’d invest, I think agriculture with tech is a good future</label><br>
+        <label><input type="radio" name="q15" value="3"> I’d research it more before deciding</label><br>
+        <label><input type="radio" name="q15" value="2"> I’m not sure, I prefer traditional farming</label><br>
+        <label><input type="radio" name="q15" value="1"> I wouldn’t invest in agriculture at all</label><br>
+    </div>
+    
+
+      <!-- Repeat the question structure for all remaining questions -->
+      <!-- Add more questions up to 15 following the same format -->
+
+      <div id="question15" class="question" style="display: none;">
+        <p>15. Do you prefer to invest in traditional or modern opportunities?</p>
+        <label><input type="radio" name="q15" value="1"> Traditional (stocks, bonds, etc.)</label><br>
+        <label><input type="radio" name="q15" value="2"> Modern (cryptocurrencies, tech, etc.)</label><br>
+        <label><input type="radio" name="q15" value="3"> A mix of both</label><br>
+      </div>
+
+      <button id="nextButton" onclick="nextQuestion()">Next</button>
+    </div>
+
+    <div id="resultsContainer" style="display: none;">
+        <h2 id="riskLevel"></h2> <!-- Displays the title, e.g., "The Risk-Taker" -->
+        <p id="resultText"></p>  <!-- Displays the descriptive text -->
+        <button onclick="resetQuiz()">Restart Quiz</button>
+      </div>      
+  </div>
+
+  <script>
+    let currentQuestion = 1;
+    let totalScore = 0;
+  
+    function startQuiz() {
+      document.querySelector('.intro-container').style.display = 'none';
+      document.getElementById('quizContainer').style.display = 'block';
+      showQuestion(currentQuestion);
+    }
+
+    function startQuiz() {
+  const nameInput = document.getElementById('userName').value.trim();
+
+  if (!nameInput) {
+    alert('Please enter your name to start the quiz.');
+    return;
+  }
+
+  // Save the user's name for use in the results
+  localStorage.setItem('userName', nameInput);
+
+  document.querySelector('.intro-container').style.display = 'none';
+  document.getElementById('quizContainer').style.display = 'block';
+  showQuestion(currentQuestion);
+}
+  
+    function showQuestion(questionNumber) {
+      for (let i = 1; i <= 15; i++) {
+        if (i === questionNumber) {
+          document.getElementById('question' + i).style.display = 'block';
+        } else {
+          document.getElementById('question' + i).style.display = 'none';
+        }
+      }
+    }
+  
+    function nextQuestion() {
+      const selectedAnswer = document.querySelector('input[name="q' + currentQuestion + '"]:checked');
+      if (selectedAnswer) {
+        totalScore += parseInt(selectedAnswer.value);
+        currentQuestion++;
+  
+        if (currentQuestion <= 15) {
+          showQuestion(currentQuestion);
+        } else {
+          showResults();
+        }
+      } else {
+        alert('Please select an answer.');
+      }
+    }
+function showResults() {
+  const userName = localStorage.getItem('userName'); // Retrieve the name
+
+  document.getElementById('quizContainer').style.display = 'none';
+  document.getElementById('resultsContainer').style.display = 'block';
+
+  let resultText = '';
+  let riskLevel = '';
+
+  if (totalScore >= 45) {
+    riskLevel = 'Risk-Taker';
+    resultText = 'Congratulations, you are in the top 25% of investors! You are all about taking bold risks for big rewards. You thrive in high-growth sectors like venture capital, cryptocurrency, and biotech, where volatility can lead to huge gains. Your strength is your ability to spot and seize groundbreaking opportunities, but the downside is that you face greater exposure to risk and volatility. You need to manage your investments carefully to avoid overexposure to high-risk assets. About 15-20% of investors worldwide fit this profile, representing those who are comfortable with high risks for potentially transformative returns. Successful risk-takers like Elon Musk, Jeff Bezos (early investments in startups), Chamath Palihapitiya, Richard Branson, and Mark Cuban fall into this category.';
+  } else if (totalScore >= 35 && totalScore <= 44) {
+    riskLevel = 'Balanced Investor';
+    resultText = 'Congratulations, you are in the 50%-75% percentile of investors! You strike a great balance between safety and growth, investing in both stable assets and higher-growth options like technology or mid-cap stocks. You are adaptable and have the ability to adjust to market changes while maintaining diversification to reduce risk. Your strength is the flexibility to capture opportunities while maintaining enough security. However, you might not take full advantage of the highest-risk, highest-reward opportunities. Around 25% of investors worldwide fall into this category, which shows a solid number of people focusing on a more diversified, balanced approach. Notable balanced investors include Bill Ackman, Michael Burry, Robert Kiyosaki, Cathie Wood, and T. Rowe Price.';
+  } else if (totalScore >= 25 && totalScore <= 34) {
+    riskLevel = 'Conservative Investor';
+    resultText = 'Congrats, you are in the 25%-50% percentile of investors! You have a solid, steady approach to investing, focusing on moderate risk and steady growth. You tend to invest in sectors like healthcare, utilities, and dividend-paying stocks. Your strength is in benefiting from compounding returns and diversifying to minimize risk. On the downside, you may not capitalize as much on higher-risk, higher-return opportunities. Your strategy is ideal for long-term goals like retirement or funding education. Around 30-35% of global investors fit this profile, focusing on stability and slow growth. Investors like John Templeton, Peter Lynch, Seth Klarman, Howard Marks, and Mohnish Pabrai fit this profile.';
+  } else if (totalScore >= 15 && totalScore <=24) {
+    riskLevel = 'Cautious Investor';
+    resultText = 'Congratulations, you are in the lower 25% of investors! You focus on protecting your capital and prefer low-risk investments like government bonds, savings accounts, and stable mutual funds. Your strength lies in your ability to avoid losses during tough economic times and your dedication to financial security. However, your cautious nature means you may miss out on higher returns from riskier investments. You build wealth slowly but steadily. It is estimated that about 25% of investors worldwide fall into this category, reflecting a large portion of conservative, risk-averse individuals. Example investors in this category include Warren Buffett (early career phase), Benjamin Graham, Paul Samuelson, John Bogle, and Ray Dalio (focused on risk parity portfolios).';
+  }
+
+  // Display the risk level as the title and description below it
+  document.getElementById('resultText').innerHTML = `
+    <strong>${userName}, you are a "${riskLevel}"<strong>
+    <p>${resultText}</p>
+  `;
+}
+
+    function resetQuiz() {
+      // Reset the quiz state
+      currentQuestion = 1;
+      totalScore = 0;
+  
+      // Clear all selected answers
+      const allAnswers = document.querySelectorAll('input[type="radio"]');
+      allAnswers.forEach(answer => {
+        answer.checked = false;
+      });
+  
+      // Reset the UI
+      document.querySelector('.intro-container').style.display = 'block';
+      document.getElementById('quizContainer').style.display = 'none';
+      document.getElementById('resultsContainer').style.display = 'none';
+  
+      // Hide all questions except the first
+      for (let i = 1; i <= 15; i++) {
+        document.getElementById('question' + i).style.display = 'none';
+      }
+    }
+  </script>  
+</body>
+</html>
